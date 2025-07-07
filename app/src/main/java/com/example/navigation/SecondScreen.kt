@@ -14,16 +14,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.navigation.ui.theme.NavigationTheme
 
 @Composable
-fun SecondScreen(navigateToFirstScreen: () -> Unit) {
-    val name = remember {
-        mutableStateOf("")
-    }
+fun SecondScreen(name: String, navigateToFirstScreen: () -> Unit) {
 
     Column(
         modifier = Modifier
@@ -32,13 +30,8 @@ fun SecondScreen(navigateToFirstScreen: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Second Screen", fontSize = 20.sp)
+        Text(text = " Welcome to the second Screen $name", fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(10.dp))
-        OutlinedTextField(
-            value = name.value,
-            onValueChange = { name.value = it },
-            label = { Text("Enter name") }
-        )
         Button(onClick = { navigateToFirstScreen() }) {
             Text(text = "Go to First Screen")
         }
@@ -48,7 +41,5 @@ fun SecondScreen(navigateToFirstScreen: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun SecondScreenPreview() {
-    NavigationTheme {
-        SecondScreen { }
-    }
+    SecondScreen("prashant",{})
 }
